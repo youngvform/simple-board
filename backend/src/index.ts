@@ -1,19 +1,14 @@
-import express, { NextFunction } from 'express';
+import express from 'express';
+import api from './api';
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-function myLogger(req: any, res: any, next: any) {
-  console.log('LOGGED');
-  next();
-}
+app.use('/api', api);
 
 app.get('/', (req, res) => {
-  console.log('routing1');
-  res.send('hello world!!!!');
+  return res.send('hello world!!!!');
 });
-
-app.use(myLogger);
 
 app.listen(port, () => {
   console.log(`Server is running on port : ${port}`);
